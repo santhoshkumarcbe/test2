@@ -1,0 +1,44 @@
+<p>parent-component works!</p>
+<p [ngClass]="isHighlight? 'highlight' : ''">received data from child : {{receivedData}}</p>
+
+<app-child-component [dataFromParent]="parentData" (dataToParent)="receiveDataFromChild($event)"></app-child-component>
+
+<br>
+
+<div [ngClass]="isHighlight ? 'highlight' : ''">
+    This is a div 
+    <br> 
+    <p *ngIf="receivedData">hai</p>
+    <p *ngFor="let number of numbers">{{number}}</p>
+</div>
+
+<p>Name List</p>
+<p *ngFor="let name of names; index as i;first as isFirst">{{i+1}}.{{name}} <span *ngIf="isFirst">(first element)</span></p>
+
+<div [ngSwitch]="bookSlot">
+    <p *ngSwitchCase="true">Available</p>
+    <p *ngSwitchCase="false" [ngStyle]="styles">this is booked until 2 pm </p>
+    <p *ngSwitchDefault > error</p>
+</div>
+
+<p style="font-size: 40px;" [ngStyle]="styles">Two way binding using NgModel</p>
+<form>
+    <p>From input 1, hi {{currentItem.name}}</p>
+    <input type="text" name="inputField" [(ngModel)]="currentItem.name" >
+   
+    <p>From input 2, hi {{currentItem.name}}</p>
+    <input [ngModel]="currentItem.name" (ngModelChange)="setUppercaseName($event)" id="example-uppercase" name="example-uppercase">
+</form>
+
+
+<p>filters</p>
+
+<p>uppercase : {{parentData | uppercase}}</p>
+
+<p>search</p>
+<input [(ngModel)] = "search" >
+<ul>
+    <li *ngFor="let item of filteredItems ">{{item.name}}</li>
+</ul>
+
+<p appCustomDirective>Custom directives</p>
